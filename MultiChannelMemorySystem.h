@@ -50,6 +50,7 @@ class MultiChannelMemorySystem : public SimulatorObject
 			bool addTransaction(bool isWrite, uint64_t addr);
 			bool willAcceptTransaction(); 
 			bool willAcceptTransaction(uint64_t addr); 
+			void addTransaction_delayed(bool isWrite, uint64_t addr);
 			void update();
 			void printStats(bool finalStats=false);
 			ostream &getLogFile();
@@ -72,7 +73,8 @@ class MultiChannelMemorySystem : public SimulatorObject
 	private:
 		unsigned findChannelNumber(uint64_t addr);
 		void actual_update(); 
-		vector<MemorySystem*> channels; 
+		vector<MemorySystem*> channels;
+		vector<delayedInfo> delayedTransactions; 
 		unsigned megsOfMemory; 
 		string deviceIniFilename;
 		string systemIniFilename;
