@@ -35,8 +35,17 @@
 #include "ClockDomain.h"
 #include "CSVWriter.h"
 
+#include <vector>
+#include <queue>
 
 namespace DRAMSim {
+
+struct delayedInfo{
+	uint64_t 	    addr;
+	bool 		    isWrite;
+	unsigned int 	delayedTicks;
+};
+
 
 
 class MultiChannelMemorySystem : public SimulatorObject 
